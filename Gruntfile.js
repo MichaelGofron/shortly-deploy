@@ -3,10 +3,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      main: {
-        src: ['public/client/*.js', 'public/lib/*.js'],
-        dest: 'dist/clientBuild.js'
+      client: {
+        src: ['public/client/*.js'],
+        dest: 'public/dist/clientBuild.js'
+      },
+
+      lib: {
+        src: ['public/lib/jquery.js','public/lib/underscore.js','public/lib/backbone.js','public/lib/handlebars.js'],
+        dest: 'public/dist/libBuild.js'
       }
+
     },
 
     mochaTest: {
@@ -25,11 +31,26 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      options: {
+        // the banner is inserted at the top of the output
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %>, also Mike rocks! */\n'
+      },
+      client: {
+        files: {
+          'public/dist/clientBuild.min.js' : ['public/dist/clientBuild.js']
+        }
+      },
+      lib: {
+        files: {
+          'public/dist/libBuild.min.js' : ['public/dist/libBuild.js']
+        } 
+      }
     },
 
     jshint: {
       files: [
         // Add filespec list here
+        'Gruntfile.js','public/client/*.js',
       ],
       options: {
         force: 'true',
@@ -99,7 +120,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'concat'
+    'jshint','concat','uglify'
   ]);
 
   grunt.registerTask('upload', function(n) {

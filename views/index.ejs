@@ -1,3 +1,4 @@
+
 <script id='layout' type='text/x-handlebars-template'>
   <div class='navigation'>
   <ul>
@@ -40,8 +41,9 @@
     Templates[div.id] = Handlebars.compile(div.innerHTML);
   });
 </script>
-<% if(process.env.NODE_ENV === 'production') { %>
-  <script src='/dist/clientBuild.js'></script>
+
+<% if(true /*process.env.NODE_ENV === 'production'*/) { %>
+  <script src='/dist/clientBuild.min.js'></script>
 <% } else { %> 
   <script src='/client/app.js'></script>
   <script src='/client/link.js'></script>
