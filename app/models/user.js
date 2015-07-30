@@ -24,8 +24,8 @@ Users.methods.hashPassword = function(){
     });
 }
 
-Users.post('init', function(doc){
-  doc.hashPassword();
+Users.pre('save', function(next){
+  this.hashPassword().then(next);
 });
 
 var User = db.model('User', Users);
