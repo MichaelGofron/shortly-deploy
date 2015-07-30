@@ -100,6 +100,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
+    console.log("SERVER-DEV TARGET:  ", target);
     var nodemon = grunt.util.spawn({
          cmd: 'grunt',
          grunt: true,
@@ -119,9 +120,15 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
+  grunt.registerTask('buildNoTest', [
     'jshint','concat','uglify'
   ]);
+
+  grunt.registerTask('build', [
+    'buildNoTest', 'test'
+    // 'jshint', 'test'
+  ]);
+
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
@@ -133,6 +140,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
       // add your production server task here
+      'buildNoTest', 'upload'
   ]);
 
 

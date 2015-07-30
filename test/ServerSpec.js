@@ -13,7 +13,7 @@ var Link = require('../app/models/link');
 
 var User = require('../app/models/user');
 var Link = require('../app/models/link');
-('', function() {
+// ('', function() {
 
   beforeEach(function(done) {
     // Log out currently signed in user
@@ -246,4 +246,4 @@ var Link = require('../app/models/link');
 
   }); // Account Login
 
-});
+// });
