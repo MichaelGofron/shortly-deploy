@@ -1,5 +1,9 @@
 var Bookshelf = require('bookshelf');
 var path = require('path');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+mongoose.connect('mongodb://localhost:27017t/mike');
+
 
 var db = Bookshelf.initialize({
   client: 'sqlite3',
