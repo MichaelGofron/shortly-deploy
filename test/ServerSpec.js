@@ -13,7 +13,7 @@ var Link = require('../app/models/link');
 
 var User = require('../app/models/user');
 var Link = require('../app/models/link');
-('', function() {
+// ('', function() {
 
   beforeEach(function(done) {
     // Log out currently signed in user
@@ -57,7 +57,7 @@ var Link = require('../app/models/link');
       });
 
       it('New links create a database entry', function(done) {
-        request(app)''
+        request(app)
           .post('/links')
           .send({
             'url': 'http://www.roflzoo.com/'})
@@ -82,7 +82,7 @@ var Link = require('../app/models/link');
             Link.findOne({'url' : 'http://www.roflzoo.com/'})
               .exec(function(err,link){
                 if(err) console.log(err);
-                expect(link.title).to.equal('Rofl Zoo - Daily funny animal pictures');
+                expect(link.title).to.equal('Funny pictures of animals, funny dog pictures');
               });
           })
           .end(done);
@@ -246,4 +246,4 @@ var Link = require('../app/models/link');
 
   }); // Account Login
 
-});
+// });
